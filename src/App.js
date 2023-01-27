@@ -8,7 +8,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/KorporBooks/:book_name/:year/:edition/:subject/:topic" element={<SubjectAnswer />} />
+        <Route path="/:book_type/:book_name/:year/:edition/:subject/:topic" element={<SubjectAnswer />} />
       </Routes>
     </BrowserRouter>
   );
