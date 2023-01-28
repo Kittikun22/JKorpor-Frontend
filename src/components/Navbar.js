@@ -8,7 +8,8 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import MenuItem from '@mui/material/MenuItem';
-import logo from '../asset/Jknowledge-Logo.png';
+import logo from '../asset/JKorpor.png';
+import logo2 from '../asset/JKorpor2.png';
 import { Link, Button } from '@mui/material';
 
 const pages = [
@@ -66,7 +67,7 @@ const Navbar = () => {
                                 textDecoration: 'none',
                             }}
                         >
-                            <Box component='img' src={logo} width="175px" duration={0} />
+                            <Box component='img' src={logo} duration={0} sx={{ width: '150px', height: '60px' }} />
                         </Typography>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -125,7 +126,7 @@ const Navbar = () => {
                                 textDecoration: 'none',
                             }}
                         >
-                            <Box component='img' src={logo} width='175px' duration={0} />
+                            <Box component='img' src={logo2} width='175px' duration={0} />
                         </Typography>
 
 
@@ -139,7 +140,9 @@ const Navbar = () => {
                                         my: 1, color: '#f6bb3d', display: 'block', fontSize: '1rem'
                                     }}
                                 >
-                                    {page.pageName}
+                                    <Typography sx={{ fontSize: '1.1rem' }}>
+                                        {page.pageName}
+                                    </Typography>
                                 </Button>
                             ))}
                         </Box>

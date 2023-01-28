@@ -1,11 +1,11 @@
 import React from 'react'
-import { Box, Typography, Divider, Button, Link } from '@mui/material'
+import { Box, Typography, Divider, Button, Link, Grid } from '@mui/material'
 
 function AnswerList({ answers }) {
     return (
         <>
             <Divider sx={{ m: 4 }} />
-            <Box mt={4} mx={2} sx={{ display: 'flex', justifyContent: 'center', gap: 2, flexWrap: 'wrap' }}>
+            <Box my={4} mx={2} sx={{ display: 'flex', justifyContent: 'center', gap: 2, flexWrap: 'wrap' }}>
                 {answers?.map((val, key) => {
                     return (
                         <Link
@@ -22,7 +22,7 @@ function AnswerList({ answers }) {
                                     background: 'linear-gradient(0deg, rgba(246,187,61,1) 0%, rgba(255,158,0,1) 100%)'
                                 }}>
                                 <Typography sx={{ fontSize: '1.3rem' }}>
-                                    ข้อที่ {val.answer_no}
+                                    ข้อ {val.answer_no}
                                 </Typography>
                             </Button>
                         </Link>

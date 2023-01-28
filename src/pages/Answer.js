@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar';
 import Axios from 'axios'
 import AnswerHeader from '../components/Answer-Components/AnswerHeader';
 import AnswerList from '../components/Answer-Components/AnswerList';
-
+import AlertDialogMessage from '../components/AlertDialogMessage';
 
 function SubjectAnswer() {
 
@@ -18,8 +18,11 @@ function SubjectAnswer() {
     const [answers, setAnswers] = useState()
     const [subjectInfo, setSubjectInfo] = useState()
 
+    const [openDialog, setOpenDialog] = useState(false)
+    const [message, setMessage] = useState('')
+
     useEffect(() => {
-        Axios.post('http://localhost:8888/getTopicNoAnswer', {
+        Axios.post('https://japi.jkorpor.com/getTopicNoAnswer', {
             book_type: book_type,
             book_name: book_name,
             year: year,
@@ -29,6 +32,8 @@ function SubjectAnswer() {
         }).then((res) => {
             if (res.data.length === 0) {
                 setLoading(false)
+                setMessage('ยังไม่ได้เพิ่มวิดีโอเฉลยของเนื้อหานี้')
+                setOpenDialog(true)
             }
             else {
                 setSubjectInfo(res.data[0])
@@ -41,7 +46,10 @@ function SubjectAnswer() {
 
     return (
         <>
+            <AlertDialogMessage openDialog={openDialog} setOpenDialog={setOpenDialog} message={message} />
+
             <Navbar />
+
             {loading === true ?
                 <>
                     <AnswerHeader subjectInfo={subjectInfo} />
