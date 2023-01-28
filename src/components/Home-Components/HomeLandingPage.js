@@ -3,11 +3,11 @@ import { Typography, Box } from '@mui/material'
 
 function HomeLandingPage() {
     return (
-        <>
+        <Box sx={{ textAlign: 'center' }}>
             <Box sx={{ height: '100vh', bgcolor: '#FFF6BD' }}>
                 <Typography variant='h2'>CONTENT 1</Typography>
                 <Typography>
-                    โปรโมท ตัวอย่าง : 
+                    โปรโมท ตัวอย่าง :
                     สูตรสำเร็จในการสอบผ่าน
                     เรียนรู้
                     ประเมิน
@@ -18,7 +18,7 @@ function HomeLandingPage() {
                     ทดสอบ ด้วยระบบจําลองการสอบจริง
                     เนื้อหาตามประกาศสำนักงาน ก.พ. ใช้สอบปีล่าสุด
                     คอร์สเดียวจบ เรียนครบสอบผ่านแน่นอน!
-                    </Typography>
+                </Typography>
             </Box>
             <Box sx={{ height: '100vh', bgcolor: '#' }}>
                 <Typography variant='h2'>CONTENT 2</Typography>
@@ -34,7 +34,7 @@ function HomeLandingPage() {
                 <Typography>ข่าวสารและการรับสมัคร</Typography>
 
             </Box>
-        </>
+        </Box>
     )
 }
 

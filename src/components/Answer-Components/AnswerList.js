@@ -1,17 +1,35 @@
 import React from 'react'
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, Divider, Button, Link } from '@mui/material'
 
 function AnswerList({ answers }) {
     return (
-        <Box mt={4} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            {answers?.map((val, key) => {
-                return (
-                    <a key={key} href={val.answer_url}>
-                        <Typography sx={{ fontSize: { xs: '1rem', md: '1.2rem' } }}>{val.subject_name} {val.topic_name} ข้อ {val.answer_no}.</Typography>
-                    </a>
-                )
-            })}
-        </Box>
+        <>
+            <Divider sx={{ m: 4 }} />
+            <Box mt={4} mx={2} sx={{ display: 'flex', justifyContent: 'center', gap: 2, flexWrap: 'wrap' }}>
+                {answers?.map((val, key) => {
+                    return (
+                        <Link
+                            target="_blank"
+                            key={key}
+                            href={val.answer_url}
+                            underline="none"
+                        >
+                            <Button
+                                variant='contained'
+                                sx={{
+                                    width: '70px',
+                                    height: '90px',
+                                    background: 'linear-gradient(0deg, rgba(246,187,61,1) 0%, rgba(255,158,0,1) 100%)'
+                                }}>
+                                <Typography sx={{ fontSize: '1.3rem' }}>
+                                    ข้อที่ {val.answer_no}
+                                </Typography>
+                            </Button>
+                        </Link>
+                    )
+                })}
+            </Box>
+        </>
     )
 }
 
