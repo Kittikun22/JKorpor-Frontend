@@ -11,22 +11,26 @@ import MenuItem from '@mui/material/MenuItem';
 import logo from '../asset/JKorpor.png';
 import logo2 from '../asset/JKorpor2.png';
 import { Link, Button } from '@mui/material';
+import { BsFacebook, BsYoutube } from 'react-icons/bs';
+import { FaTiktok, FaInstagram } from 'react-icons/fa'
+
+
 
 const pages = [
     {
-        pageName: 'หนังสือ',
+        pageName: 'หนังสือเตรียม',
         url: '#'
     },
     {
-        pageName: 'คอร์สติว',
+        pageName: 'คอร์สติวสอบ',
         url: '#'
     },
     {
-        pageName: 'ข่าวสารและการรับสมัคร',
+        pageName: 'ข่าวสาร ก.พ.',
         url: '#'
     },
     {
-        pageName: 'ทำความรู้จักกับข้อสอบ ก.พ.',
+        pageName: 'รู้จักการสอบ ก.พ.',
         url: '#'
     },
     {
@@ -67,7 +71,7 @@ const Navbar = () => {
                                 textDecoration: 'none',
                             }}
                         >
-                            <Box component='img' src={logo} duration={0} sx={{ width: '150px', height: '60px' }} />
+                            <Box component='img' src={logo} duration={0} sx={{ width: '175px', height: '75px' }} />
                         </Typography>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -79,7 +83,7 @@ const Navbar = () => {
                                 onClick={handleOpenNavMenu}
                                 color="black"
                             >
-                                <MenuIcon sx={{ color: '#f6bb3d' }} />
+                                <MenuIcon sx={{ color: '#ffba00' }} />
                             </IconButton>
                             <Menu
                                 id="menu-appbar"
@@ -107,6 +111,7 @@ const Navbar = () => {
                                         key={key}
                                     >
                                         <Typography textAlign="center">{page.pageName}</Typography>
+
                                     </MenuItem>
                                 ))}
                             </Menu>
@@ -122,7 +127,7 @@ const Navbar = () => {
                                 flexGrow: 1,
                                 fontWeight: 700,
                                 letterSpacing: '.3rem',
-                                color: '#f6bb3d',
+                                color: '#ffba00',
                                 textDecoration: 'none',
                             }}
                         >
@@ -130,25 +135,44 @@ const Navbar = () => {
                         </Typography>
 
 
-                        <Box sx={{ ml: 4, justifyContent: 'flex-start', flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                            {pages.map((page, key) => (
-                                <Button
-                                    href={page.url}
-                                    onClick={handleCloseNavMenu}
-                                    key={key}
-                                    sx={{
-                                        my: 1, color: '#f6bb3d', display: 'block', fontSize: '1rem'
-                                    }}
-                                >
-                                    <Typography sx={{ fontSize: '1.1rem' }}>
-                                        {page.pageName}
-                                    </Typography>
-                                </Button>
-                            ))}
+                        <Box sx={{ flexDirection: 'column', flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+
+                            <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2, mt: 1, mr: 2 }}>
+                                <a target='_blank' rel='noreferrer' href="https://www.facebook.com/Jkorpor">
+                                    <BsFacebook size="30px" color='#ffba00' />
+                                </a>
+                                <a target='_blank' rel='noreferrer' href="https://www.instagram.com/jkorportutor">
+                                    <FaInstagram size="20px" color='#2C3639' style={{ background: '#ffba00', borderRadius: 50, padding: '5px' }} />
+                                </a>
+                                <a target='_blank' rel='noreferrer' href="https://www.tiktok.com/@jkorportutor">
+                                    <FaTiktok size="20px" color='#2C3639' style={{ background: '#ffba00', borderRadius: 50, padding: '5px' }} />
+                                </a>
+                                <a target='_blank' rel='noreferrer' href="https://www.youtube.com/@user-jp2jo4eh1w/featured">
+                                    <BsYoutube size="20px" color='#2C3639' style={{ background: '#ffba00', borderRadius: 50, padding: '5px' }} />
+                                </a>
+                            </Box>
+                            <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                {pages.map((page, key) => (
+                                    <Button
+                                        href={page.url}
+                                        onClick={handleCloseNavMenu}
+                                        key={key}
+                                        sx={{
+                                            my: 1, color: '#ffba00'
+                                        }}
+                                    >
+                                        <Typography sx={{ fontSize: '1.1rem' }}>
+                                            {page.pageName}
+                                        </Typography>
+                                    </Button>
+
+                                ))}
+                            </Box>
+
                         </Box>
                     </Toolbar>
                 </Container>
-                <Box sx={{ height: '5px', bgcolor: '#f6bb3d' }} />
+                <Box sx={{ height: '5px', bgcolor: '#ffba00' }} />
             </AppBar >
         </>
     );

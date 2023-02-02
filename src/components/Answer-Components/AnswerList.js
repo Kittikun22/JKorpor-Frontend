@@ -19,7 +19,7 @@ function AnswerList({ answers }) {
                                 sx={{
                                     width: '70px',
                                     height: '90px',
-                                    background: 'linear-gradient(0deg, rgba(246,187,61,1) 0%, rgba(255,158,0,1) 100%)'
+                                    background: 'linear-gradient(0deg, rgba(42,123,97,1) 0%, rgba(15,62,62,1) 100%)'
                                 }}>
                                 <Typography sx={{ fontSize: '1.3rem' }}>
                                     ข้อ {val.answer_no}

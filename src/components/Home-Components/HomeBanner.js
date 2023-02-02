@@ -5,7 +5,7 @@ function HomeBanner() {
     return (
         <Box sx={{ height: '95vh', bgcolor: '#' }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <Typography variant='h2'>BANNER !!!</Typography>
+                <Typography mt={5} variant='h2'>BANNER !!!</Typography>
 
                 <Typography sx={{ fontSize: '2.5rem', textAlign: 'center' }}>
                     เตรียมสอบและเฉลยละเอียด
