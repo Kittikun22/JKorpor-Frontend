@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography, Divider, Button, Link, Grid } from '@mui/material'
+import { Box, Typography, Divider, Button, Link } from '@mui/material'
 
 function AnswerList({ answers }) {
     return (
@@ -19,7 +19,7 @@ function AnswerList({ answers }) {
                                 sx={{
                                     width: '70px',
                                     height: '90px',
-                                    background: 'linear-gradient(0deg, rgba(42,123,97,1) 0%, rgba(15,62,62,1) 100%)'
+                                    background: val.book_color_code
                                 }}>
                                 <Typography sx={{ fontSize: '1.3rem' }}>
                                     ข้อ {val.answer_no}

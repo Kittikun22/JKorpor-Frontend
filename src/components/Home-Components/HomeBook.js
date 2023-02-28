@@ -1,25 +1,22 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Typography, Box, Button, Stack } from '@mui/material'
+import Axios from 'axios'
 
-
-const books = [{
-    id: 1,
-    book_name: "ก.พ. ภาค ก",
-    book_description: "สรุปทุกวิชา เฉลยละเอียด อัปเดตข้อสอบจริง 5 ปีล่าสุด พิชิตคะแนน ผ่านทุกเกณฑ์ 4 วิชา เล่มเดียวจบ",
-    pic: "images/books/korpor_1_2566.png",
-    fullPrice: 1390,
-    amount: 490,
-},
-{
-    id: 2,
-    book_name: "ท้องถิ่น ภาค ก",
-    book_description: "สรุปทุกเนื้อหา ครบทุกเรื่อง พร้อมข้อสอบและเฉลยละเอียด อัปเดตข้อสอบจริง ปี 2564 2562 และ 2560",
-    pic: "images/books/local_1_2566.png",
-    fullPrice: 1390,
-    amount: 390
-}]
 
 function HomeBook() {
+
+    const [bookLeft, setBookLeft] = useState()
+    const [bookRight, setBookRight] = useState()
+
+    useEffect(() => {
+
+        Axios.get("https://japi.jkorpor.com/getPrepareBook").then((res) => {
+            setBookLeft(res.data[0])
+            setBookRight(res.data[1])
+        })
+
+    }, [])
+
     return (
         <Box>
             <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
@@ -34,7 +31,8 @@ function HomeBook() {
                 <Box sx={{ display: 'flex', justifyContent: 'space-around' }}>
                     <Box
                         component="img"
-                        src={books[0].pic}
+                        src={bookLeft?.image_src}
+                        alt={bookLeft?.image_alt}
                         sx={{
                             position: { xs: 'static', sm: 'absolute', md: 'absolute' },
                             width: { xs: '150px', sm: '175px', md: '300px', lg: '350px' },
@@ -44,7 +42,8 @@ function HomeBook() {
                     />
                     <Box
                         component="img"
-                        src={books[1].pic}
+                        src={bookRight?.image_src}
+                        alt={bookRight?.image_alt}
                         sx={{
                             position: { xs: 'static', sm: 'absolute', md: 'absolute' },
                             width: { xs: '150px', sm: '175px', md: '300px', lg: '350px' },
@@ -58,8 +57,13 @@ function HomeBook() {
                     <Box mt={{ xs: 0, sm: 2 }} sx={{ display: 'flex', justifyContent: 'space-between', gap: 2 }}>
 
                         <Box>
-                            <Typography sx={{ fontSize: { xs: '1.2rem', sm: '1.5rem', lg: '2rem' }, textAlign: 'center', fontWeight: 600 }}>
-                                {books[0].book_name}
+                            <Typography
+                                sx={{
+                                    fontSize: { xs: '1.2rem', sm: '2rem', lg: '2.2rem' },
+                                    textAlign: 'center',
+                                    fontWeight: 600
+                                }}>
+                                {bookLeft?.preparebook_name}
                             </Typography>
                             <Typography
                                 sx={{
@@ -67,62 +71,68 @@ function HomeBook() {
                                     height: { xs: '110px', sm: '150px', md: '200px', lg: '150px' }
                                 }}
                             >
-                                {books[0].book_description}
+                                {bookLeft?.preparebook_des}
                             </Typography>
-                            <Box mt={2} mx={{ xs: 0, md: 2 }} sx={{ display: 'flex', alignItems: 'flex-end', gap: 1 }}>
-                                <Typography
-                                    sx={{
-                                        fontSize: { xs: '1rem', md: '1.5rem', lg: '2rem' },
-                                        fontWeight: 600,
-                                        background: '#DC0000',
-                                        color: '#fff',
-                                        borderRadius: 3,
-                                        px: 1,
-                                        width: '80px',
-                                        textAlign: 'center'
-                                    }}>
-                                    ฿{books[0].amount}
-                                </Typography>
-                                <Typography
-                                    sx={{
-                                        fontSize: { xs: '.8rem', sm: '1rem', md: '1.2rem' },
-                                        color: '#DC0000',
-                                        fontWeight: 600,
-                                        textDecoration: 'line-through',
 
-                                    }}>
-                                    ฿{books[0].fullPrice}
-                                </Typography>
+                            <Box>
+                                <Box mt={2} mx={{ xs: 0, md: 2 }} sx={{ display: 'flex', alignItems: 'flex-end', gap: 1 }}>
+                                    <Typography
+                                        sx={{
+                                            fontSize: { xs: '1rem', md: '1.5rem', lg: '2rem' },
+                                            fontWeight: 600,
+                                            background: '#DC0000',
+                                            color: '#fff',
+                                            borderRadius: 3,
+                                            px: 1,
+                                            width: '80px',
+                                            textAlign: 'center',
+                                        }}>
+                                        ฿{bookLeft?.preparebook_amount}
+                                    </Typography>
+                                    <Typography
+                                        sx={{
+                                            fontSize: { xs: '.8rem', sm: '1rem', md: '1.2rem' },
+                                            color: '#DC0000',
+                                            fontWeight: 600,
+                                            textDecoration: 'line-through',
+
+                                        }}>
+                                        ฿{bookLeft?.preparebook_fullprice}
+                                    </Typography>
+                                </Box>
+
+                                <Stack mt={2} mx={{ xs: 0, md: 2 }}>
+                                    <Button
+                                        variant='contained'
+                                        color='whiteButton'
+                                        href={bookLeft?.preparebook_url}
+                                        target="_blank"
+                                        sx={{
+
+                                            borderRadius: 3,
+                                            fontSize: { xs: '1rem', md: '1.2rem', lg: '1.5rem' },
+                                            fontWeight: 600,
+                                            color: '#DC0000',
+
+                                        }}
+                                    >
+                                        สั่งสินค้า
+                                    </Button>
+                                </Stack>
                             </Box>
 
-                            <Stack mt={2} mx={{ xs: 0, md: 2 }}>
-                                <Button
-                                    variant='contained'
-                                    color='whiteButton'
-                                    sx={{
-
-                                        borderRadius: 3,
-                                        fontSize: { xs: '1rem', md: '1.2rem', lg: '1.5rem' },
-                                        fontWeight: 600,
-                                        color: '#DC0000',
-
-                                    }}
-                                >
-                                    สั่งสินค้า
-                                </Button>
-                            </Stack>
                         </Box>
 
 
                         <Box>
                             <Typography
                                 sx={{
-                                    fontSize: { xs: '1.2rem', sm: '1.5rem', md: '1.5rem', lg: '2rem' },
+                                    fontSize: { xs: '1.2rem', sm: '2rem', lg: '2.2rem' },
                                     textAlign: 'center',
                                     fontWeight: 600
                                 }}
                             >
-                                {books[1].book_name}
+                                {bookRight?.preparebook_name}
                             </Typography>
                             <Typography
                                 sx={{
@@ -130,52 +140,56 @@ function HomeBook() {
                                     height: { xs: '110px', sm: '150px', md: '200px', lg: '150px' }
                                 }}
                             >
-                                {books[1].book_description}
+                                {bookRight?.preparebook_des}
                             </Typography>
-                            <Box mt={2} mx={{ xs: 0, md: 2 }} sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', gap: 1 }}>
-                                <Typography
-                                    sx={{
-                                        fontSize: { xs: '.8rem', sm: '1rem', md: '1.2rem' },
-                                        fontWeight: 600,
-                                        color: '#DC0000',
-                                        textDecoration: 'line-through',
 
-                                    }}>
-                                    ฿{books[1].fullPrice}
-                                </Typography>
+                            <Box>
+                                <Box mt={2} mx={{ xs: 0, md: 2 }} sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'flex-end', gap: 1 }}>
+                                    <Typography
+                                        sx={{
+                                            fontSize: { xs: '.8rem', sm: '1rem', md: '1.2rem' },
+                                            fontWeight: 600,
+                                            color: '#DC0000',
+                                            textDecoration: 'line-through',
 
-                                <Typography
-                                    sx={{
-                                        fontSize: { xs: '1rem', md: '1.5rem', lg: '2rem' },
-                                        fontWeight: 600,
-                                        background: '#DC0000',
-                                        color: '#fff',
-                                        borderRadius: 3,
-                                        px: 1,
-                                        width: '80px',
-                                        textAlign: 'center'
-                                    }}>
-                                    ฿{books[1].amount}
-                                </Typography>
+                                        }}>
+                                        ฿{bookRight?.preparebook_fullprice}
+                                    </Typography>
+
+                                    <Typography
+                                        sx={{
+                                            fontSize: { xs: '1rem', md: '1.5rem', lg: '2rem' },
+                                            fontWeight: 600,
+                                            background: '#DC0000',
+                                            color: '#fff',
+                                            borderRadius: 3,
+                                            px: 1,
+                                            width: '80px',
+                                            textAlign: 'center'
+                                        }}>
+                                        ฿{bookRight?.preparebook_amount}
+                                    </Typography>
+                                </Box>
+
+                                <Stack mt={2} mx={{ xs: 0, md: 2 }}>
+                                    <Button
+                                        variant='contained'
+                                        color='whiteButton'
+                                        href={bookRight?.preparebook_url}
+                                        target="_blank"
+                                        sx={{
+
+                                            borderRadius: 3,
+                                            fontSize: { xs: '1rem', md: '1.2rem', lg: '1.5rem' },
+                                            fontWeight: 600,
+                                            color: '#DC0000',
+
+                                        }}
+                                    >
+                                        สั่งสินค้า
+                                    </Button>
+                                </Stack>
                             </Box>
-
-                            <Stack mt={2} mx={{ xs: 0, md: 2 }}>
-                                <Button
-                                    variant='contained'
-                                    color='whiteButton'
-                                    sx={{
-
-                                        borderRadius: 3,
-                                        fontSize: { xs: '1rem', md: '1.2rem', lg: '1.5rem' },
-                                        fontWeight: 600,
-                                        color: '#DC0000',
-
-                                    }}
-                                >
-                                    สั่งสินค้า
-                                </Button>
-                            </Stack>
-
                         </Box>
                     </Box>
                 </Box>

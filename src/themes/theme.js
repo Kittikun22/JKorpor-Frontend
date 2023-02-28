@@ -19,6 +19,9 @@ const theme = createTheme({
         },
         whiteButton:{
             main:'#fff'
+        },
+        mainColor:{
+            main:'#ffba00'
         }
     },
 });

@@ -8,34 +8,33 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import MenuItem from '@mui/material/MenuItem';
-import logo from '../asset/JKorpor.png';
-import logo2 from '../asset/JKorpor2.png';
+import logo from '../asset/LOGO1.png';
+import logo2 from '../asset/LOGO2.png';
 import { Link, Button } from '@mui/material';
 import { BsFacebook, BsYoutube } from 'react-icons/bs';
 import { FaTiktok, FaInstagram } from 'react-icons/fa'
 
 
-
 const pages = [
     {
-        pageName: 'หนังสือเตรียม',
-        url: '#'
+        pageName: 'หนังสือเตรียมสอบ',
+        url: '/books'
     },
     {
         pageName: 'คอร์สติวสอบ',
-        url: '#'
+        url: '/courses'
     },
     {
         pageName: 'ข่าวสาร ก.พ.',
-        url: '#'
+        url: '/news'
     },
     {
         pageName: 'รู้จักการสอบ ก.พ.',
-        url: '#'
+        url: '/whatIsKorpor'
     },
     {
         pageName: 'คำถามที่พบบ่อย',
-        url: '#'
+        url: '/faq'
     }];
 
 const Navbar = () => {
@@ -71,7 +70,7 @@ const Navbar = () => {
                                 textDecoration: 'none',
                             }}
                         >
-                            <Box component='img' src={logo} duration={0} sx={{ width: '175px', height: '75px' }} />
+                            <Box component='img' src={logo} duration={0} sx={{ height: '100px' }} />
                         </Typography>
 
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import {
     Box,
     Typography,
@@ -6,26 +6,14 @@ import {
     CardContent,
     CardMedia,
     CardActionArea,
-    Divider,
-    Button
+    Divider
 } from '@mui/material'
-import Axios from 'axios'
 import Flickity from 'react-flickity-component'
-import './whatIsKorporFlickity.css'
+import './newsFlickity.css'
 
 
-function HomeKorporNews() {
 
-    const [allNews, setAllNews] = useState()
-
-    useEffect(() => {
-
-        Axios.get('https://japi.jkorpor.com/getNews').then((res) => {
-            setAllNews(res.data)
-        })
-
-    }, [])
-
+function NewsFlickity({ lastNews }) {
 
     const flickityOptions = {
         initialIndex: 0,
@@ -37,14 +25,14 @@ function HomeKorporNews() {
         // wrapAround: true
     }
 
-
     return (
-        <Box pt={4} pb={10} sx={{ background: '#FFF6BD' }}>
-            <Box sx={{ display: 'flex', justifyContent: 'center', mb: 5 }}>
-                <Typography sx={{ display: 'inline', fontSize: { xs: '2.5rem', md: '3rem' }, fontWeight: 600, borderBottom: '4px solid #ffba00' }}>
+        <>
+            <Box pt={4} sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Typography mb={2} sx={{ display: 'inline', fontSize: '2rem', fontWeight: 600, borderBottom: '4px solid #ffba00' }}>
                     ข่าวสาร ก.พ.
                 </Typography>
             </Box>
+
 
             <Box mx={{ xs: 0, md: 10 }} sx={{ display: 'block' }}>
                 <Flickity
@@ -54,7 +42,7 @@ function HomeKorporNews() {
                     reloadOnUpdate // default false
                     static // default false
                 >
-                    {allNews?.map((val, key) => {
+                    {lastNews?.map((val, key) => {
                         return (
                             <Box sx={{ mx: 2 }} key={key}>
                                 <Card
@@ -93,10 +81,9 @@ function HomeKorporNews() {
                     })}
                 </Flickity>
 
-            </Box>
-
-        </Box>
+            </Box >
+        </>
     )
 }
 
-export default HomeKorporNews
+export default NewsFlickity
